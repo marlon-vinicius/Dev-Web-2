@@ -12,3 +12,10 @@ const pool = new Pool ({
 module.exports = {
     pool
 }
+
+// CREATE TABLE users (
+// 	    id SERIAL PRIMARY KEY,
+//   	nome VARCHAR(100),
+//   	email VARCHAR(50),
+// 	    senha VARCHAR(20)
+// );
