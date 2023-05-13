@@ -50,23 +50,21 @@ app.post("/login", async (req, res) => {
         return
     }
 
-    const {id,nome} = checkUser.rows[0]
+    const { id, nome } = checkUser.rows[0]
     res.status(200).json({
         user: {
             id,
             nome,
             email,
         },
-    });
-
-    const token = jwt.sign(id, segredo);
-    res.status(200).json({token});
+        token : jwt.sign({id}, segredo)        
+    });   
 })
 
 app.get("/users",async (req, res) => {
     try {
         const client = await pool.connect();
-        const { rows } = await client.query("SELECT * From users");
+        const { rows } = await client.query(`SELECT * From users`);
         res.status(200).send(rows);
     } catch (error) {
         console.error(error);
@@ -90,18 +88,13 @@ app.post("/users", async (req,res) => {
 app.put("/users/:id", async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, email, senha } = req.body;
+        const { nome, email, senha } = req.body;
 
         const client = await pool.connect();
-        const checkUser = await client.query(`SELECT * FROM users WHERE id=${id}`);
+        const updateUser = await client.query
+            (`UPDATE users SET nome = '${nome}',email ='${email}',senha ='${senha}' WHERE id=${id}`);    
+        res.status(200).send({message: "Usuario atualizado com sucesso."});        
 
-        if (!checkUser) {
-            await client.query(`UPDATE users SET nome = '${name}',email ='${email}',senha ='${senha}' WHERE id=${id}`);
-            const { rows } = await client.query(`SELECT * FROM users WHERE id=${id}`);
-            res.status(200).send({message: "Usuario atualizado com sucesso.", rows});
-        } else {
-            res.status(401).send("Usuario não encontrado.");
-        }
     } catch (error) {
         console.error(error);
         res.status(500).send("Erro de conexão com o servidor");
