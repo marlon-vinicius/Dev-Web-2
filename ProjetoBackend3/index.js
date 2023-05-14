@@ -11,60 +11,41 @@ app.listen(8080, () => {
 
 const segredo = "MeuSegredo";
 
-function verifyToken(req, res, next) {
-    const token = req.headers.authorization;
-
-    if (!token) {
-        res.status(401).json({message:
-        'Token não fornecido!'});
-        return
-    }
-
-    try {
-        const decodificado = jwt.verify(token, segredo);        
-        req.user = decodificado;
-        next();
-    } catch (err) {
-        res.status(403).json({message:
-        'Token inválido!'});
-    }
-}
-
 app.get("/", (req, res) => {
     res.send("Bem vindo a página principal")
 })
 
 app.post("/login", async (req, res) => {
     const {email,senha} = req.body;
+
     const client = await pool.connect();
     const checkUser = await client.query(`SELECT * FROM users WHERE email='${email}'`);
     
-    if (!checkUser) {
-        res.status(401).json({message:
-             'Usuario não existe'});
+    if (checkUser.rowCount === 0) {
+        res.status(401).json({message: 'Usuario não existe'});
         return
-    }
-    
-    if ((checkUser.rows[0].senha) !== senha) {
+    } else if (checkUser.rows[0].senha !== senha) {
         res.status(401).json({message: 'Senha incorreta'});
         return
+    } else {
+        res.status(200).json({
+        user: {
+            id: checkUser.rows[0].id,
+            email: checkUser.rows[0].email,
+            nome: checkUser.rows[0].nome
+        },
+        token : jwt.sign({id : checkUser.rows[0].id}, segredo)        
+    }); 
     }
 
     const { id, nome } = checkUser.rows[0]
-    res.status(200).json({
-        user: {
-            id,
-            nome,
-            email,
-        },
-        token : jwt.sign({id}, segredo)        
-    });   
+      
 })
 
 app.get("/users",async (req, res) => {
     try {
         const client = await pool.connect();
-        const { rows } = await client.query(`SELECT * From users`);
+        const { rows } = await client.query(`SELECT * FROM users`);
         res.status(200).send(rows);
     } catch (error) {
         console.error(error);
@@ -105,7 +86,8 @@ app.delete("/users/:id", async (req, res) => {
     try {
         const { id } = req.params;
         const client = await pool.connect();
-        const deleteName = await client.query(`DELETE FROM users where id=${id}`)        
+
+        const deleteName = await client.query(`DELETE FROM users WHERE id=${id}`)        
         res.status(200).send("Usuario deletado com sucesso.");
         
     } catch (error) {
