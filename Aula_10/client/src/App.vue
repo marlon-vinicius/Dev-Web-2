@@ -2,13 +2,15 @@
   import RegisterUser from './components/registerUser.vue';
   import UpdateUser from './components/updateUser.vue';
   import GetAllUser from './components/getAllUser.vue';
+  import DeleteUser from './components/deleteUser.vue';
 
 export default {
   name:'App',
   components: {
     RegisterUser,
     GetAllUser,
-    UpdateUser
+    UpdateUser,
+    DeleteUser
   }
 }
 </script>
@@ -17,6 +19,7 @@ export default {
   <RegisterUser></RegisterUser>
   <GetAllUser></GetAllUser>
   <UpdateUser></UpdateUser>
+  <DeleteUser></DeleteUser>
 </template>
 
 <style scoped>
