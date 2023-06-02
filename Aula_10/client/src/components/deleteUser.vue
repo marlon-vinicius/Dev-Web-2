@@ -52,5 +52,6 @@ export default {
     }
     button {
         background-color: aquamarine;
+        margin-top: 20px;
     }
 </style>

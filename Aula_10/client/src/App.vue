@@ -16,8 +16,8 @@ export default {
 </script>
 
 <template>
-  <RegisterUser></RegisterUser>
   <GetAllUser></GetAllUser>
+  <RegisterUser></RegisterUser>
   <UpdateUser></UpdateUser>
   <DeleteUser></DeleteUser>
 </template>

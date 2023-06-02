@@ -7,7 +7,7 @@
                 <input type="email" v-model="email">
             </div>
             <div>
-                <label>NOME: </label>
+                <label>Nome: </label>
                 <input type="text" v-model="nome">
             </div>            
             <div>
@@ -58,5 +58,6 @@ export default {
     }
     button {
         background-color: aquamarine;
+        margin-top: 20px;
     }
 </style>

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>Consulta Usuários</h1>
         <form @submit.prevent="getUsers">
             <button type="submit">Mostrar todos</button>
             <p>{{ msg }}</p>
@@ -31,3 +32,12 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+    h1 {
+        color: black;
+    }
+    button {
+        background-color: aquamarine;
+    }
+</style>

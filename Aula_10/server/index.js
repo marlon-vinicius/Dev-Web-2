@@ -56,8 +56,10 @@ app.post("/api/updateUser", async (req, res) => {
 app.delete("/api/deleteUser", async (req, res) => {
     try {
         const { email, senha } = req.body;
+        client = await pool.connect();
+        const del = await client.query(`SELECT senha FROM users WHERE email = '${email}'`);        
         pool.query (`DELETE FROM users WHERE email = '${email}'`)
-        res.status(200).send("Usuário deletado com sucesso")
+        res.status(200).send("Usuário deletado com sucesso")             
     }catch (error) {
         console.error(error);
         res.status(500).send(`Erro de conexão com o servidor`);        
