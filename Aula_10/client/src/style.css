@@ -14,6 +14,15 @@
   -webkit-text-size-adjust: 100%;
 }
 
+#main {
+  width: 300px;
+  height: 100%;
+  background-color: antiquewhite;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 5px 5px 10px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -45,6 +54,10 @@ h1 {
   line-height: 1.1;
 }
 
+p {
+  font-size: 1.2em;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -52,12 +65,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  box-shadow: 1px 1px 5px;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #000000;
+  font-size: 1.05em;
+  transition: 0.2s;
 }
 button:focus,
 button:focus-visible {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Cadastro Usuários</h1>
+        <h1>Cadastro Usuário</h1>
         <form @submit.prevent="registerUser">
             <div>
                 <label>Nome: </label>
@@ -57,7 +57,7 @@ export default {
         color: black;
     }
     button {
-        background-color: aquamarine;
-        margin-top: 20px;
+        background-color: rgb(247, 182, 77);
+        margin-top: 20px;        
     }
 </style>

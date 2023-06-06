@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Atualização de Usuários</h1>
+        <h1>Atualização de Usuário</h1>
         <form @submit.prevent="updateUser">
             <div>
                 <label>E-mail: </label>
@@ -57,7 +57,7 @@ export default {
         color: black;
     }
     button {
-        background-color: aquamarine;
+        background-color: rgb(247, 182, 77);
         margin-top: 20px;
     }
 </style>

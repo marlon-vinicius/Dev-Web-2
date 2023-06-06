@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Deletar Usuários</h1>
+        <h1>Deletar Usuário</h1>
         <form @submit.prevent="deleteUser">
             <div>
                 <label>E-mail: </label>
@@ -51,7 +51,7 @@ export default {
         color: black;
     }
     button {
-        background-color: aquamarine;
+        background-color: rgb(247, 182, 77);
         margin-top: 20px;
     }
 </style>

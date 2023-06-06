@@ -16,10 +16,13 @@ export default {
 </script>
 
 <template>
-  <GetAllUser></GetAllUser>
-  <RegisterUser></RegisterUser>
-  <UpdateUser></UpdateUser>
-  <DeleteUser></DeleteUser>
+  <div id="main">
+    <GetAllUser></GetAllUser>
+    <RegisterUser></RegisterUser>
+    <UpdateUser></UpdateUser>
+    <DeleteUser></DeleteUser>
+  </div>
+  
 </template>
 
 <style scoped>

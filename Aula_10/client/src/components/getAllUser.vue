@@ -5,9 +5,23 @@
             <button type="submit">Mostrar todos</button>
             <p>{{ msg }}</p>
         </form>
-        <ul v-if="users.length">
-            <li v-for="user in users" :key="user.id">{{ user.nome }} - {{ user.email }}</li>
-        </ul>
+        <div class="showUser">
+            <table >
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>                        
+                    </tr>
+                </thead>
+                <tbody v-if="users.length">
+                    <tr v-for="user in users" :key="user.id">
+                        <td>{{ user.nome }}</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
     </div>
 </template>
 
@@ -38,6 +52,20 @@ export default {
         color: black;
     }
     button {
-        background-color: aquamarine;
+        background-color: rgb(247, 182, 77);
+    }    
+    .showUser {
+        background-color: rgba(247, 182, 77, 0.674);
+        display: flex;
+        justify-content: center;
+        margin: 0 10px;
+    }
+
+    table, th,td {
+        border: 2px solid #4444;
+        border-collapse: collapse;
+    }
+    table {
+        width: 100%;
     }
 </style>
